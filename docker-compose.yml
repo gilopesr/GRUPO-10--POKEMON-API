@@ -7,17 +7,26 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - .:/GRUPO-10--POKEMON-API
+      - .:/app
+      - ./data:/app/data
     environment:
-      DATABASE_URL: sqlite:///./pokemon.db
+      DATABASE_URL: sqlite:////app/data/pokemon.db
       FLASK_ENV: development
-    depends_on: []
+      FLASK_APP: app.py
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   swagger-ui:
-      image: swaggerapi/swagger-ui
-      ports:
-      - "8080:80"
-      environment:
-        URL: http://api:5000/apidocs/swagger.json
-      depends_on:
-      - api
+    image: swaggerapi/swagger-ui
+    container_name: swagger-pokemon
+    ports:
+      - "8080:8080"
+    environment:
+      URLS: '[{ url: "http://localhost:5000/apidocs/swagger.json", name: "Pokémon API" }]'
+    depends_on:
+      api:
+        condition: service_healthy

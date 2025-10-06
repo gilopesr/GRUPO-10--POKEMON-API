@@ -1,7 +1,7 @@
 from config import db
 
 class Habilidade(db.Model):
-    tablename = "habilidade"
+    __tablename__ = "habilidade"
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
