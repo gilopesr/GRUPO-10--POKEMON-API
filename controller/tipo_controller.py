@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from model import db
+from config import db
 from model.tipo import Tipo, TIPOS_VALIDOS
 
 class TipoController:

@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from model import db
+from config import db
 from model.pokemon import Pokemon
 from model.tipo import Tipo
 
