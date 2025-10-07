@@ -40,3 +40,7 @@ Para cada Pokémon, a API retorna dados detalhados, incluindo:
 
 ### Acesse a documentação:
     * A API estará disponível em `http://localhost:5000/apidocs/swagger.json` .
+
+## Diagrama ER
+<img width="1066" height="641" alt="image" src="https://github.com/user-attachments/assets/bb5f3706-0d72-4668-af82-b6068b1f050a" />
+
