@@ -3,7 +3,7 @@
 # Integrantes
 Giovana Lopes Ribeiro<br>
 Isabel Yumi Susa<br>
-Milene Oliveira<br>
+Milene Oliveira de Souza<br>
 Murilo Leone Fernandes<br>
 
 ## Sobre a API 
