@@ -1,0 +1,31 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card-info h1 {
+  font-size: 24px;
+}
+
+.card-info p{
+  font-size: 16px;
+}
+
+.card-info {
+  border-radius: 5px;
+  height: 150px;
+  width: 200px;
+  background-color: rgb(130, 146, 190);
+}
+
+.card-tipagem h1{
+  font-size: 24px;
+}
+
+.card-tipagem p{
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: rgb(207, 207, 207);
+}
