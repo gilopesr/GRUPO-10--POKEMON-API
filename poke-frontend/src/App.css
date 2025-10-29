@@ -1,31 +1,117 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-.card-info h1 {
-  font-size: 24px;
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 450px;
+    padding: 20px;
+    margin: 20px;
 }
 
-.card-info p{
-  font-size: 16px;
+.card h1 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 5px;
 }
 
-.card-info {
-  border-radius: 5px;
-  height: 150px;
-  width: 200px;
-  background-color: rgb(130, 146, 190);
+.card h2 {
+    font-size: 1.3em;
+    color: #555;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
-.card-tipagem h1{
-  font-size: 24px;
+.card h3 {
+    font-size: 1.1em;
+    color: #777;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
-.card-tipagem p{
-  border-radius: 10px;
-  font-size: 20px;
-  background-color: rgb(207, 207, 207);
+.card hr {
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+    margin: 15px 0;
+}
+
+
+.card-header {
+    text-align: center;
+}
+
+.pokemon-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.pokemon-stats strong {
+    color: #007bff;
+}
+
+
+.tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.tag {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+
+.type-planta { background-color: #7AC74C; }
+.type-poison { background-color: #A33EA1; }
+.type-fogo   { background-color: #EE8130; }
+.type-gelo   { background-color: #96D9D6; color: #333; }
+.type-voador { background-color: #916bf9; }
+.type-psíquico { background-color: #F95587; }
+
+
+.fraqueza-fogo { background-color: #d88045; }
+.fraqueza-psíquico { background-color: #af79cc; }
+.fraqueza-gelo { background-color: #84afc4; }
+.fraqueza-voador { background-color: #A98FF3; } 
+
+.vantagem-água {background-color: #3138b9; }
+.vantagem-terrestre {background-color: #674c37; }
+.vantagem-rocha {background-color: #5d5954; }
+
+.card-habilidade h3 {
+    color: #007bff;
+}
+
+.card-habilidade p {
+    font-style: italic;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.card-evolucao p {
+    margin: 5px 0;
+    font-size: 0.95em;
+}
+
+.card-evolucao strong {
+    color: #CC0000; 
 }
