@@ -73,9 +73,6 @@ def create_tipo():
             "error": f"Tipo inválido. Use apenas um dos seguintes: {', '.join(TIPOS_VALIDOS)}"
         }), 400
 
-    if Tipo.query.filter_by(nome=nome).first():
-        return jsonify({"error": "Já existe um tipo com este nome"}), 409
-
     tipo = Tipo(
         nome=nome, 
         vantagem=data.get("vantagem"), 

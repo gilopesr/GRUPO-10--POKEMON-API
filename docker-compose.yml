@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   api:
     build:
@@ -8,11 +10,11 @@ services:
       - "5000:5000"
     volumes:
       - .:/app
-      - ./data:/app/data
+      - ./instance:/app/instance
     environment:
-      DATABASE_URL: sqlite:////app/data/pokemon.db
-      FLASK_ENV: development
-      FLASK_APP: app.py
+      - DATABASE_URL=sqlite:///instance/pokemon.db
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
       interval: 30s
@@ -20,13 +22,29 @@ services:
       retries: 3
       start_period: 40s
 
+  frontend:
+    image: node:18-alpine
+    container_name: frontend-pokemon
+    working_dir: /app
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_BASE_URL=http://localhost:5000
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    depends_on:
+      api:
+        condition: service_healthy
+
   swagger-ui:
     image: swaggerapi/swagger-ui
     container_name: swagger-pokemon
     ports:
       - "8080:8080"
     environment:
-      URLS: '[{ url: "http://localhost:5000/apidocs/swagger.json", name: "Pokémon API" }]'
+      URLS: '[{ url: "http://localhost:5000/apidocs", name: "Pokémon API" }]'
     depends_on:
       api:
         condition: service_healthy

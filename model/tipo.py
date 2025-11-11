@@ -9,7 +9,7 @@ class Tipo(db.Model):
     __tablename__ = "tipo"
 
     id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(50), unique=True, nullable=False)
+    nome = db.Column(db.String(50), nullable=False)
     vantagem = db.Column(db.String(50))
     fraqueza = db.Column(db.String(50))
 

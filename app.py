@@ -1,12 +1,20 @@
 from flask import Flask, jsonify
 from flasgger import Swagger
-
+from flask_cors import CORS
 from config import app, db
 
 from controller.pokemon_controller import pokemon_bp
 from controller.habilidade_controller import habilidade_bp
 from controller.evolucao_controller import evolucao_bp
 from controller.tipo_controller import tipo_bp
+
+CORS(app, resources={
+    r"/api/*": {
+        "origins": ["http://localhost:5173", "http://127.0.0.1:5173"],
+        "methods": ["GET", "POST", "PUT", "DELETE"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 
 swagger = Swagger(app)
 
@@ -55,13 +63,13 @@ def not_found(error):
 def internal_error(error):
     return jsonify({"error": "Erro interno do servidor"}), 500
 
-with app.app_context():
-    db.create_all()
-    print("✅ Tabelas do banco de dados criadas com sucesso!")
-    print("🚀 Servidor pronto para iniciar...")
-    print(f"📚 Documentação disponível em: http://{app.config['HOST']}:{app.config['PORT']}/apidocs")
-
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+        print("✅ Tabelas do banco de dados criadas com sucesso!")
+        print("🚀 Servidor pronto para iniciar...")
+        print("📚 Documentação disponível em: http://localhost:5000/apidocs")
+    
     app.run(
         host=app.config["HOST"], 
         port=app.config['PORT'], 

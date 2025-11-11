@@ -4,6 +4,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
@@ -13,15 +14,16 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 COPY . .
 
-RUN mkdir -p /app/data
+RUN mkdir -p instance
 
 ENV PYTHONPATH=/app
 ENV FLASK_APP=app.py
-ENV FLASK_ENV=production
+ENV FLASK_ENV=development
+ENV FLASK_DEBUG=1
 
 EXPOSE 5000
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import requests; requests.get('http://localhost:5000/health', timeout=2)" || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+    CMD curl -f http://localhost:5000/health || exit 1
 
-CMD ["python", "app.py"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000", "--reload"]
