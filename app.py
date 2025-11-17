@@ -8,14 +8,6 @@ from controller.habilidade_controller import habilidade_bp
 from controller.evolucao_controller import evolucao_bp
 from controller.tipo_controller import tipo_bp
 
-CORS(app, resources={
-    r"/api/*": {
-        "origins": ["http://localhost:5173", "http://127.0.0.1:5173"],
-        "methods": ["GET", "POST", "PUT", "DELETE"],
-        "allow_headers": ["Content-Type"]
-    }
-})
-
 swagger = Swagger(app)
 
 app.register_blueprint(pokemon_bp, url_prefix='/api/pokemons')

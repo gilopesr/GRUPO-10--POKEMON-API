@@ -18,7 +18,7 @@ function App() {
       const response = await pokemonAPI.getAllPokemons();
       setPokemons(response.data);
     } catch (err) {
-      setError('Erro ao carregar pokémons da API');
+      setError('Erro ao carregar pokémons da API. Verifique se o backend está rodando.');
       console.error('Error fetching pokemons:', err);
     } finally {
       setLoading(false);
@@ -31,11 +31,51 @@ function App() {
       setSelectedPokemon(response.data);
     } catch (err) {
       console.error('Error fetching pokemon details:', err);
+      setError('Erro ao carregar detalhes do Pokémon');
     }
   };
 
-  if (loading) return <div className="loading">Carregando pokémons...</div>;
-  if (error) return <div className="error">{error}</div>;
+  const handleRetry = () => {
+    setError(null);
+    setLoading(true);
+    fetchPokemons();
+  };
+
+  if (loading) {
+    return (
+      <div className="app">
+        <div className="loading">
+          <h2>Carregando Pokémons...</h2>
+          <p>Aguarde enquanto conectamos com a API</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="app">
+        <div className="error">
+          <h2>Ops! Algo deu errado</h2>
+          <p>{error}</p>
+          <button 
+            onClick={handleRetry}
+            style={{
+              marginTop: '15px',
+              padding: '10px 20px',
+              backgroundColor: '#ff0000',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer'
+            }}
+          >
+            Tentar Novamente
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="app">
@@ -45,28 +85,35 @@ function App() {
       </header>
 
       <div className="container">
+        {/* Lista de Pokémons */}
         <div className="pokemon-list">
-          <h2>Lista de Pokémons</h2>
+          <h2>Lista de Pokémons ({pokemons.length})</h2>
           <div className="pokemon-grid">
             {pokemons.map(pokemon => (
               <div 
                 key={pokemon.id} 
-                className="pokemon-card"
+                className={`pokemon-card ${selectedPokemon?.id === pokemon.id ? 'selected' : ''}`}
                 onClick={() => fetchPokemonDetails(pokemon.id)}
+                style={{
+                  borderColor: selectedPokemon?.id === pokemon.id ? '#ff0000' : '#dee2e6'
+                }}
               >
                 <h3>{pokemon.nome}</h3>
                 <p><strong>Tipo:</strong> {pokemon.tipo || 'N/A'}</p>
                 <p><strong>Altura:</strong> {pokemon.altura}</p>
                 <p><strong>Peso:</strong> {pokemon.peso}</p>
                 {pokemon.habilidades && (
-                  <p><strong>Habilidades:</strong> {pokemon.habilidades.length}</p>
+                  <p>
+                    <strong>Habilidades:</strong> {pokemon.habilidades.length > 0 ? pokemon.habilidades.length : 'Nenhuma'}
+                  </p>
                 )}
               </div>
             ))}
           </div>
         </div>
 
-        {selectedPokemon && (
+        {/* Detalhes do Pokémon */}
+        {selectedPokemon ? (
           <div className="pokemon-details">
             <h2>Detalhes do Pokémon</h2>
             <div className="card">
@@ -79,6 +126,7 @@ function App() {
                 </div>
               </div>
 
+              {/* Habilidades */}
               {selectedPokemon.habilidades && selectedPokemon.habilidades.length > 0 && (
                 <>
                   <hr />
@@ -94,6 +142,7 @@ function App() {
                 </>
               )}
 
+              {/* Evoluções */}
               {selectedPokemon.evolucoes && selectedPokemon.evolucoes.length > 0 && (
                 <>
                   <hr />
@@ -101,14 +150,35 @@ function App() {
                     <h2>Evoluções</h2>
                     {selectedPokemon.evolucoes.map(evo => (
                       <div key={evo.id} className="evolucao">
-                        <p>Evolui para: <strong>{evo.para_pokemon}</strong></p>
-                        <p>Condição: {evo.condicao}</p>
+                        <p>Evolui para: <strong>{evo.para_pokemon || 'Próxima forma'}</strong></p>
+                        <p>Condição: {evo.condicao || 'Nível up'}</p>
                         {evo.habilidade && <p>Habilidade: {evo.habilidade}</p>}
                       </div>
                     ))}
                   </div>
                 </>
               )}
+
+              {/* Mensagem se não há habilidades nem evoluções */}
+              {(!selectedPokemon.habilidades || selectedPokemon.habilidades.length === 0) && 
+               (!selectedPokemon.evolucoes || selectedPokemon.evolucoes.length === 0) && (
+                <div className="card-habilidade">
+                  <h2>Informações</h2>
+                  <div className="habilidade">
+                    <p>Este Pokémon não possui habilidades ou evoluções cadastradas no banco de dados.</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="pokemon-details">
+            <h2>Detalhes do Pokémon</h2>
+            <div className="card placeholder">
+              <div className="card-header">
+                <h1>👆 Selecione um Pokémon</h1>
+                <p>Clique em um Pokémon da lista para ver seus detalhes completos</p>
+              </div>
             </div>
           </div>
         )}

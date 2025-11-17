@@ -1,84 +1,237 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    width: 450px;
-    padding: 20px;
-    margin: 20px;
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
 }
 
-.card h1 {
-    font-size: 1.8em;
-    color: #333;
-    margin-bottom: 5px;
+.app-header {
+  text-align: center;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
 }
 
-.card h2 {
-    font-size: 1.3em;
-    color: #555;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 5px;
-    margin-top: 15px;
-    margin-bottom: 10px;
+.app-header h1 {
+  margin: 0;
+  font-size: 2.5em;
 }
 
-.card h3 {
-    font-size: 1.1em;
-    color: #777;
-    margin-top: 5px;
-    margin-bottom: 5px;
+.app-header p {
+  margin: 10px 0 0 0;
+  opacity: 0.9;
 }
 
-.card hr {
-    border: 0;
-    height: 1px;
-    background-color: #ddd;
-    margin: 15px 0;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
 }
 
+.pokemon-list h2 {
+  color: #333;
+  border-bottom: 2px solid #ff0000;
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.pokemon-card {
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-5px);
+  border-color: #ff0000;
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
+}
+
+.pokemon-card h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.2em;
+  text-transform: capitalize;
+}
+
+.pokemon-card p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.pokemon-card strong {
+  color: #333;
+}
+
+.pokemon-details {
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+.pokemon-details h2 {
+  color: #333;
+  border-bottom: 2px solid #ff0000;
+  padding-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.pokemon-details .card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  min-height: 400px;
+}
+
+.card.placeholder {
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  text-align: center;
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.card.placeholder h1 {
+  color: #6c757d;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.card.placeholder p {
+  color: #8a8a8a;
+  font-size: 1em;
+}
 
 .card-header {
-    text-align: center;
+  text-align: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.card-header h1 {
+  color: #333;
+  margin: 0 0 15px 0;
+  font-size: 2em;
+  text-transform: capitalize;
 }
 
 .pokemon-stats {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
-    font-size: 0.9em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.pokemon-stats p {
+  background: #f8f9fa;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
 }
 
 .pokemon-stats strong {
-    color: #007bff;
+  color: #ff0000;
 }
 
+.card-habilidade, .card-evolucao {
+  margin-top: 20px;
+}
+
+.card-habilidade h2, .card-evolucao h2 {
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.3em;
+}
+
+.habilidade, .evolucao {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+  border-left: 4px solid #ff0000;
+}
+
+.habilidade h3 {
+  color: #007bff;
+  margin: 0 0 8px 0;
+  font-size: 1.1em;
+  text-transform: capitalize;
+}
+
+.habilidade p {
+  font-style: italic;
+  color: #666;
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.evolucao p {
+  margin: 5px 0;
+  font-size: 0.95em;
+}
+
+.evolucao strong {
+  color: #CC0000;
+  text-transform: capitalize;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 20px 0;
+}
 
 .tag-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 .tag {
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 0.85em;
-    font-weight: bold;
-    color: white;
-    text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
 }
-
 
 .type-planta { background-color: #7AC74C; }
 .type-poison { background-color: #A33EA1; }
@@ -86,7 +239,8 @@ body {
 .type-gelo   { background-color: #96D9D6; color: #333; }
 .type-voador { background-color: #916bf9; }
 .type-psíquico { background-color: #F95587; }
-
+.type-água { background-color: #6390F0; }
+.type-elétrico { background-color: #F7D02C; color: #333; }
 
 .fraqueza-fogo { background-color: #d88045; }
 .fraqueza-psíquico { background-color: #af79cc; }
@@ -98,20 +252,60 @@ body {
 .vantagem-rocha {background-color: #5d5954; }
 
 .card-habilidade h3 {
-    color: #007bff;
+  color: #007bff;
 }
 
 .card-habilidade p {
-    font-style: italic;
-    color: #666;
-    font-size: 0.9em;
+  font-style: italic;
+  color: #666;
+  font-size: 0.9em;
 }
 
 .card-evolucao p {
-    margin: 5px 0;
-    font-size: 0.95em;
+  margin: 5px 0;
+  font-size: 0.95em;
 }
 
 .card-evolucao strong {
-    color: #CC0000; 
+  color: #CC0000; 
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2em;
+}
+
+.loading {
+  color: #666;
+}
+
+.error {
+  color: #ff0000;
+  background: #ffe6e6;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ffcccc;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  
+  .pokemon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  
+  .app-header h1 {
+    font-size: 2em;
+  }
+  
+  .pokemon-details {
+    position: static;
+  }
+  
+  .pokemon-details .card {
+    min-height: auto;
+  }
 }

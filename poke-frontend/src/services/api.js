@@ -35,4 +35,8 @@ export const habilidadeAPI = {
   getHabilidadeById: (id) => api.get(`/habilidades/${id}`),
 };
 
+export const evolucaoAPI = {
+  getAllEvolucoes: () => api.get('/evolucoes'),
+};
+
 export default api;
