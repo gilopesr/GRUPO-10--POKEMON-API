@@ -308,4 +308,56 @@ hr {
   .pokemon-details .card {
     min-height: auto;
   }
+
+  .pokemon-details .card {
+    padding: 15px;
+  }
+
+  .pokemon-stats {
+    gap: 5px;
+    margin-top: 10px;
+  }
+  
+  .pokemon-stats p {
+    padding: 8px 10px;
+    font-size: 0.9em;
+  }
+  
+  .tag {
+    padding: 4px 8px;
+    font-size: 0.8em;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .app {
+    padding: 10px;
+  }
+
+  .app-header h1 {
+    font-size: 1.8em;
+  }
+
+  .pokemon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+  }
+
+  .pokemon-card {
+    padding: 10px;
+  }
+  
+  .pokemon-card h3 {
+    font-size: 1.1em;
+  }
+  
+  .pokemon-card p {
+    font-size: 0.85em;
+  }
+
+  .pokemon-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 10px rgba(255, 0, 0, 0.15);
+  }
 }
