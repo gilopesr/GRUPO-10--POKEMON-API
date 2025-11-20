@@ -110,6 +110,13 @@ body {
   min-height: 400px;
 }
 
+.pokemon-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
 .card.placeholder {
   background: #f8f9fa;
   border: 2px dashed #dee2e6;

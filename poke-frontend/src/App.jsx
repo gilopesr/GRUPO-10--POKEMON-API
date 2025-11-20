@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { pokemonAPI } from './services/api';
+import PokemonImage from './services/PokemonImage';
 import './App.css';
 
 function App() {
@@ -98,6 +99,11 @@ function App() {
                   borderColor: selectedPokemon?.id === pokemon.id ? '#ff0000' : '#dee2e6'
                 }}
               >
+                <PokemonImage 
+                  name={pokemon.nome} 
+                  style={{ width: '60px', height: '60px', margin: '0 auto 5px auto', display: 'block' }} 
+                />
+
                 <h3>{pokemon.nome}</h3>
                 <p><strong>Tipo:</strong> {pokemon.tipo || 'N/A'}</p>
                 <p><strong>Altura:</strong> {pokemon.altura}</p>
@@ -117,7 +123,11 @@ function App() {
           <div className="pokemon-details">
             <h2>Detalhes do Pokémon</h2>
             <div className="card">
-              <div className="card-header">
+                <div className="card-header">
+                <PokemonImage 
+                  name={selectedPokemon.nome} 
+                  style={{ width: '150px', height: '150px', margin: '0 auto 10px auto', display: 'block' }} 
+                />
                 <h1>{selectedPokemon.nome}</h1>
                 <div className="pokemon-stats">
                   <p><strong>Altura:</strong> {selectedPokemon.altura}</p>
